@@ -120,7 +120,7 @@ namespace Task2
 
             Console.WriteLine("Airplane => Registration\t: " + a01.getAirPlaneCode() +" Anzahl der Sitzplaetze\t: " + a01.getNumberOfSeats() + " Flugzeugtyp\t: " + a01.getTypeOfPlane());
             Console.WriteLine("Flug => Folgendes Flugzeug wird auf dem Flug eingesetzt: "+ f01.getAirplane().getAirPlaneCode());
-            input = Convert.ToInt32(Console.ReadLine());
+            
         }
     }
 }
