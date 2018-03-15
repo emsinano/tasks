@@ -35,11 +35,11 @@ namespace Task3{
         private string destinationAirport;
         private double price;
         Airplane plane;
-        Staff staff;
+        HumanResources.Staff staff;
 
 
         //Constructor
-        public Flight(string fc, string fd, string dT, string dA, string aT, string desA, double price, Airplane plane, Staff st){
+        public Flight(string fc, string fd, string dT, string dA, string aT, string desA, double price, Airplane plane, HumanResources.Staff st){
             this.flightCode = fc;
             this.flightDate = fd;
             this.departureTime = dT;
@@ -102,73 +102,91 @@ namespace Task3{
     interface GlobalDeclaration {
         void printData();
     }
-    class Staff : GlobalDeclaration {
-        public static int numberOfStaff;
-
-        private string personID;
-        private string firstName;
-        private string lastName;
-        private string gender;
-        private bool availability;
-
-        //Staff Constructor
-        public Staff(string piD, string fName, string lName, string gend, bool avail) {
-            personID = piD;
-            firstName = fName;
-            lastName = lName;
-            gender = gend;
-            availability = avail;
-
-            numberOfStaff++;
-        }
-
-        public static int getNumberOfStaff()
+    namespace HumanResources
+    {
+        class Staff : GlobalDeclaration
         {
-            return numberOfStaff;
+            public static int numberOfStaff;
+
+            private string personID;
+            private string firstName;
+            private string lastName;
+            private string gender;
+            private bool availability;
+
+            //Staff Constructor
+            public Staff(string piD, string fName, string lName, string gend, bool avail)
+            {
+                personID = piD;
+                firstName = fName;
+                lastName = lName;
+                gender = gend;
+                availability = avail;
+
+                numberOfStaff++;
+            }
+
+            public static int getNumberOfStaff()
+            {
+                return numberOfStaff;
+            }
+            public void printData()
+            {
+            }
         }
-        public void printData() {
+        //Crew extends Staff
+        class Crew : Staff
+        {
+            public static int numberOfCrew;
+
+            private string language;
+
+            public Crew(string piD, string fName, string lName, string gender, bool avail, string lang)
+                : base(piD, fName, lName, gender, avail)
+            {
+                language = lang;
+                numberOfCrew++;
+            }
+
+            public static int getNumberOfCrew()
+            {
+                return numberOfCrew;
+            }
+            public string getlanguage()
+            {
+                return language;
+            }
+        }
+        //Pilot
+        class Pilot : Staff
+        {
+            public static int numberOfPilots;
+
+            private string role;
+            private string typeRating;
+
+            public Pilot(string piD, string fName, string lName, string gender, bool avail, string ro, string typeR)
+                : base(piD, fName, lName, gender, avail)
+            {
+                role = ro;
+                typeRating = typeR;
+                numberOfPilots++;
+            }
+            public static int getNumberOfPilots()
+            {
+                return numberOfPilots;
+            }
+            public string getRole()
+            {
+                return role;
+            }
+            public string getTypeRating()
+            {
+                return typeRating;
+            }
         }
     }
-    //Crew extends Staff
-    class Crew : Staff {
-        public static int numberOfCrew;
 
-        private string language;
-
-        public Crew(string piD, string fName, string lName, string gender, bool avail, string lang)
-            :base(piD, fName, lName, gender, avail)
-        {
-            language = lang;
-            numberOfCrew++;
-        }
-
-        public static int getNumberOfCrew()
-        {
-            return numberOfCrew;
-        }
-        public string getlanguage()
-        {
-            return language;
-        }
-    }
-    //Pilot
-    class Pilot : Staff {
-        public static int numberOfPilots;
-
-        private string role;
-        private string typeRating;
-
-        public Pilot(string piD, string fName, string lName, string gender, bool avail, string ro, string typeR)
-            :base(piD, fName, lName, gender, avail)
-        {
-            role = ro;
-            typeRating = typeR;
-            numberOfPilots++;
-        }
-        public static int getNumberOfPilots() {
-            return numberOfPilots;
-        }
-    } 
     //Main program
     class Program{
         static void Main(string[] args){
@@ -178,9 +196,9 @@ namespace Task3{
             Console.WriteLine("*****************************************************************************************");
 
             Console.WriteLine("Staff\n" +
-                              "Anzahl der Mitarbeiter ("+Staff.getNumberOfStaff()+") | "+
-                              "Anzahl der FlugbegleiterInnen (" + Crew.getNumberOfCrew() + ") | " +
-                              "Anzahl der PilotInnen("+Pilot.getNumberOfPilots()+")");
+                              "Anzahl der Mitarbeiter ("+ HumanResources.Staff.getNumberOfStaff()+") | "+
+                              "Anzahl der FlugbegleiterInnen (" + HumanResources.Crew.getNumberOfCrew() + ") | " +
+                              "Anzahl der PilotInnen("+ HumanResources.Pilot.getNumberOfPilots()+")");
 
             Console.WriteLine("Airplane\n" +
                               "Anzahl der Flugzeuge (" + Airplane.numberOfPlanes + ")");
@@ -196,16 +214,16 @@ namespace Task3{
                 if (input == 1)
                 {
                     //Staff
-                    Crew crew_member1 = new Crew("12001", "Dona", "Muster", "female", true, "English");
-                    Pilot cabine_member1 = new Pilot("21001", "Emir", "Sinanovic", "Male", true, "Captain", "A320");
-                    Pilot cabine_member2 = new Pilot("22002", "Tarik", "Sinanov", "Male", true, "Copilot", "A320");
-                    Crew crew_member2 = new Crew("11002", "Lisa", "Musterfrau", "female", true, "English");
-                    Crew crew_member3 = new Crew("11003", "Maya", "Sinanova", "female", true, "German");
+                    HumanResources.Crew crew_member1 = new HumanResources.Crew("12001", "Dona", "Muster", "female", true, "English");
+                    HumanResources.Pilot cabine_member1 = new HumanResources.Pilot("21001", "Emir", "Sinanovic", "Male", true, "Captain", "A320");
+                    HumanResources.Pilot cabine_member2 = new HumanResources.Pilot("22002", "Tarik", "Sinanov", "Male", true, "Copilot", "A320");
+                    HumanResources.Crew crew_member2 = new HumanResources.Crew("11002", "Lisa", "Musterfrau", "female", true, "English");
+                    HumanResources.Crew crew_member3 = new HumanResources.Crew("11003", "Maya", "Sinanova", "female", true, "German");
                 }
                 else if (input == 2)
                 {
                     //Airplane
-                    Airplane a01 = new Airplane("OE-ATa", "A320", 30, 200);
+                    Airplane a01 = new Airplane("OE-ATA", "A320", 30, 200);
                     Airplane a02 = new Airplane("OE-ATB", "A190", 20, 170);
                 }
                 else if (input == 3)
@@ -220,9 +238,9 @@ namespace Task3{
                 }
 
                 Console.WriteLine("Staff\n" +
-                  "Anzahl der Mitarbeiter (" + Staff.getNumberOfStaff() + ") | " +
-                  "Anzahl der FlugbegleiterInnen (" + Crew.getNumberOfCrew() + ") | " +
-                  "Anzahl der PilotInnen(" + Pilot.getNumberOfPilots() + ")");
+                  "Anzahl der Mitarbeiter (" + HumanResources.Staff.getNumberOfStaff() + ") | " +
+                  "Anzahl der FlugbegleiterInnen (" + HumanResources.Crew.getNumberOfCrew() + ") | " +
+                  "Anzahl der PilotInnen(" + HumanResources.Pilot.getNumberOfPilots() + ")");
 
                 Console.WriteLine("Airplane\n" +
                   "Anzahl der Flugzeuge (" + Airplane.numberOfPlanes + ")");

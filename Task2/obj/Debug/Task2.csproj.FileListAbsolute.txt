@@ -1,0 +1,7 @@
+C:\Users\sinanovic emir\oom\tasks\Task2\bin\Debug\Task2.exe.config
+C:\Users\sinanovic emir\oom\tasks\Task2\bin\Debug\Task2.exe
+C:\Users\sinanovic emir\oom\tasks\Task2\bin\Debug\Task2.pdb
+C:\Users\sinanovic emir\oom\tasks\Task2\obj\Debug\Task2.csprojResolveAssemblyReference.cache
+C:\Users\sinanovic emir\oom\tasks\Task2\obj\Debug\Task2.csproj.CoreCompileInputs.cache
+C:\Users\sinanovic emir\oom\tasks\Task2\obj\Debug\Task2.exe
+C:\Users\sinanovic emir\oom\tasks\Task2\obj\Debug\Task2.pdb

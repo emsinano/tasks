@@ -48,9 +48,13 @@ namespace Task2
         }
 
         //Methods
-        private double getPrice()
+        public double getPrice()
         {
             return this.price;
+        }
+        public Airplane getAirplane()
+        {
+            return this.plane;
         }
         public double calculatePrice(string currency)
         {
@@ -77,7 +81,7 @@ namespace Task2
     class Airplane
     {
         //class variable
-        private static int numberOfPlanes;
+        public static int numberOfPlanes;
         //object variables
         private string airPlaneRegistrationCode;
         private string airPlaneType;
@@ -96,10 +100,13 @@ namespace Task2
         {
             return this.airPlaneRegistrationCode;
         }
-
         public int getNumberOfSeats()
         {
             return this.numberOfSeats;
+        }
+        public string getTypeOfPlane()
+        {
+            return this.airPlaneType;
         }
     }
 
@@ -107,8 +114,13 @@ namespace Task2
     {
         static void Main(string[] args)
         {
+            int input;
             Airplane a01 = new Airplane("T9-OHU", 180, "A320");
             Flight f01 = new Flight("WZ123", "13.03.2018", "08:00", "Sarajevo", "09:15", "Vienna", 127.00, a01);
+
+            Console.WriteLine("Airplane => Registration\t: " + a01.getAirPlaneCode() +" Anzahl der Sitzplaetze\t: " + a01.getNumberOfSeats() + " Flugzeugtyp\t: " + a01.getTypeOfPlane());
+            Console.WriteLine("Flug => Folgendes Flugzeug wird auf dem Flug eingesetzt: "+ f01.getAirplane().getAirPlaneCode());
+            input = Convert.ToInt32(Console.ReadLine());
         }
     }
 }
